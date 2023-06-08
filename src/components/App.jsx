@@ -9,13 +9,7 @@ import Button from './Button/Button';
 import Loader from './Loader/Loader';
 import Modal from './Modal/Modal';
 import { AppStyled } from './App.styled';
-
-const scrollToNewItems = () => {
-  window.scrollTo({
-    top: document.documentElement.scrollHeight,
-    behavior: 'smooth',
-  });
-};
+import { scrollToNewItems } from 'utils/scrollTo';
 
 const App = () => {
   const [images, setImages] = useState([]);
