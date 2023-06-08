@@ -10,6 +10,13 @@ import Loader from './Loader/Loader';
 import Modal from './Modal/Modal';
 import { AppStyled } from './App.styled';
 
+const scrollToNewItems = () => {
+  window.scrollTo({
+    top: document.documentElement.scrollHeight,
+    behavior: 'smooth',
+  });
+};
+
 const App = () => {
   const [images, setImages] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -68,6 +75,7 @@ const App = () => {
     setIsLoading(false);
     const totalCount = images.length;
     notify('Loaded next images.', totalCount);
+    scrollToNewItems();
   };
 
   const notify = (message, totalCount) => {
