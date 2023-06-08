@@ -4,7 +4,7 @@ import { Overlay, ModalContent, ModalImage } from './Modal.styled';
 
 const Modal = ({ largeImageURL, onClose }) => {
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = e => {
       if (e.key === 'Escape') {
         onClose();
       }
@@ -23,14 +23,18 @@ const Modal = ({ largeImageURL, onClose }) => {
     onClose();
   };
 
-  const handleImageClick = (e) => {
+  const handleImageClick = e => {
     e.stopPropagation();
   };
 
   return (
     <Overlay onClick={handleCloseClick}>
       <ModalContent>
-        <ModalImage src={largeImageURL} alt="Modal" onClick={handleImageClick} />
+        <ModalImage
+          src={largeImageURL}
+          alt="Modal"
+          onClick={handleImageClick}
+        />
       </ModalContent>
     </Overlay>
   );
