@@ -7,7 +7,7 @@ export const fetchImages = async (query, page) => {
 
   try {
     const response = await axios.get(url);
-    return response.data.hits;
+    return response.data;
   } catch (error) {
     throw new Error(error.message);
   }
