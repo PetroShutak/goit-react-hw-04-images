@@ -51,11 +51,12 @@ const App = () => {
         }
         scrollToNewItems();
         setImages(prevImages => [...prevImages, ...fetchedImages]);
+        setIsLoading(false);
       } catch (error) {
         notify('Invalid request.');
       }
 
-      setIsLoading(false);
+      
     };
 
     fetchData();
