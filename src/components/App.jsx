@@ -49,8 +49,8 @@ const App = () => {
           setIsShowButton(false);
           notify('End of images list.', total);
         }
-        scrollToNewItems();
         setImages(prevImages => [...prevImages, ...fetchedImages]);
+        scrollToNewItems();
         setIsLoading(false);
       } catch (error) {
         notify('Invalid request.');
