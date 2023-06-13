@@ -26,6 +26,7 @@ const App = () => {
       }
 
       try {
+        setIsLoading(true);
         const response = await fetchImages(query, currentPage);
         const fetchedImages = response.hits;
         const perPage = 12;
@@ -42,6 +43,9 @@ const App = () => {
         if (currentPage === 1) {
           notify('Loaded images.', total);
         }
+        if (currentPage !== 1) {
+          scrollToNewItems();
+        }
 
         if (currentPage < Math.ceil(page)) {
           setIsShowButton(true);
@@ -50,13 +54,12 @@ const App = () => {
           notify('End of images list.', total);
         }
         setImages(prevImages => [...prevImages, ...fetchedImages]);
-        scrollToNewItems();
-        setIsLoading(false);
+        // scrollToNewItems();
       } catch (error) {
         notify('Invalid request.');
       }
 
-      
+      setIsLoading(false);
     };
 
     fetchData();
@@ -71,7 +74,6 @@ const App = () => {
   const handleLoadMore = () => {
     const nextPage = currentPage + 1;
     setCurrentPage(nextPage);
-    setIsLoading(true);
   };
 
   const notify = (message, count) => {
@@ -92,7 +94,9 @@ const App = () => {
       <Searchbar onSubmit={handleSearchSubmit} />
       <AppStyled>
         <ImageGallery images={images} onOpenModal={handleOpenModal} />
-        {images.length > 0 && !isLoading && isShowButton && <Button onClick={handleLoadMore} />}
+        {images.length > 0 && !isLoading && isShowButton && (
+          <Button onClick={handleLoadMore} />
+        )}
         {isLoading && <Loader />}
         {selectedImage && (
           <Modal

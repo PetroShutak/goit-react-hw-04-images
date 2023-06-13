@@ -4,6 +4,7 @@ import { Puff } from 'react-loader-spinner';
 const Loader = () => (
   <LoaderStyled>
     <Puff
+      type="Puff"
       height="80"
       width="80"
       radius={1}
